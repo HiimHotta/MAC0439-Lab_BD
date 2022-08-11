@@ -1,0 +1,14 @@
+
+#consultas
+
+a) Receba um preço como parâmetro de entrada e devolva o modelo do PC cujo preço é o mais
+próximo.
+
+CREATE FUNCTION ObtemAno(t VARCHAR(255)) RETURNS INTEGER
+    DECLARE Not_Found CONDITION FOR SQLSTATE ’02000’ ;
+    DECLARE Too_Many CONDITION FOR SQLSTATE ’21000’ ;
+    BEGIN
+        DECLARE EXIT HANDLER FOR Not_Found, Too_Many
+        RETURN NULL;
+        RETURN (SELECT ano FROM Filme WHERE titulo = t ) ;
+    END;
